@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit backupGlobals="false" backupStaticAttributes="false" bootstrap="./test/bootstrap.php" colors="true" convertErrorsToExceptions="true" convertNoticesToExceptions="true" convertWarningsToExceptions="true" processIsolations="false" stopOnFailures="false" syntaxCheck="false">
+  <testsuites>
+    <testsuite name="Driven Unit Tests">
+      <directory>./test/</directory>
+    </testsuite>
+    <testsuite name="Driven Integration Tests">
+      <directory>./it/</directory>
+    </testsuite>
+    <testsuite name="Driven Functional Tests">
+      <directory>./functional/</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
