@@ -1,5 +1,5 @@
 {
-    "hash": "15941fb992d2955fa3e87a1c31b68e3a",
+    "hash": "9ce3c74abb9ecbb69b556ba508f31988",
     "packages": [
         {
             "name": "phpunit/php-code-coverage",
@@ -398,6 +398,48 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com"
+        },
+        {
+            "name": "webignition/json-pretty-print",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/webignition/json-pretty-print.git",
+                "reference": "72831627c3264374766f100145ca11fee3581729"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://github.com/webignition/json-pretty-print/archive/72831627c3264374766f100145ca11fee3581729.zip",
+                "reference": "72831627c3264374766f100145ca11fee3581729",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2012-07-23 23:22:31",
+            "type": "library",
+            "installation-source": "source",
+            "autoload": {
+                "psr-0": {
+                    "": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jon Cram",
+                    "email": "jon@webignition.net"
+                }
+            ],
+            "description": "Prettifies a JSON string for human readability",
+            "homepage": "https://github.com/webignition/json-pretty-print",
+            "keywords": [
+                "json",
+                "formatter",
+                "pretty-print"
+            ]
         }
     ],
     "packages-dev": null,
@@ -405,7 +447,7 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "webignition/json-pretty-print": 20
+    }
 }

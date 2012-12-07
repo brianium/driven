@@ -1,4 +1,4 @@
-<?php namespace Driven;
+<?php namespace {namespace};
 
 class TestBase extends \PHPUnit_Framework_TestCase
 {

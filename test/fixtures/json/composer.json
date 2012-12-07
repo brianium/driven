@@ -1,0 +1,15 @@
+{
+  "autoload": {
+    "psr-0": {
+      "ProjectName": [
+        "it\/",
+        "test\/",
+        "functional\/"
+      ]
+    }
+  },
+  "require": {
+    "php": ">=5.3.0",
+    "phpunit\/phpunit": ">=3.7.8"
+  }
+}

@@ -1,0 +1,18 @@
+{
+    "params": {
+        "development": {
+            "user":"postgres",
+            "driver":"pdo_pgsql",
+            "dbname":"dev",
+            "password":"root",
+            "host":"localhost"
+        },
+        "production":{
+            "user":"postgres",
+            "driver":"pdo_pgsql",
+            "dbname":"production",
+            "password":"root",
+            "host":"localhost"
+        }
+    }
+}
