@@ -12,6 +12,7 @@ class AppStructure extends StructureBase
     protected $test;
     protected $it;
     protected $functional;
+    protected $json;
 
     public function init()
     {
@@ -28,7 +29,7 @@ class AppStructure extends StructureBase
         $this->it->create();
         $this->functional->create();
         $this->createPhpUnitXml();
-        $this->createComposerJson();
+        file_put_contents('composer.json', $this->getComposerJson());
     }
 
     protected function createPhpUnitXml()
@@ -39,24 +40,29 @@ class AppStructure extends StructureBase
         $gen->saveXML('phpunit.xml.dist');
     }
 
-    protected function createComposerJson()
-    {
-        $json = $this->getComposerJson();
-        file_put_contents('composer.json', $json);
-    }
-
     protected function getComposerJson()
     {
         $json = new Json(new JsonPrettyPrinter());
+        $this->setJsonRequirements($json);
+        $this->setJsonAutoloads($json);
+        return $json->toJson();
+    }
+
+    protected function setJsonRequirements(Json $json)
+    {
         $json->addRequirement(new Requirement("php", ">=5.3.0"));
         $json->addRequirement(new Requirement("phpunit/phpunit", ">=3.7.8"));
         $json->addRequirement(new Requirement("doctrine/orm", "2.3.0"));
+        $json->addRequirement(new Requirement("phpunit/dbunit", ">=1.2.1"));
+    }
+
+    protected function setJsonAutoloads(Json $json)
+    {
         $autoload = new Autoload("psr-0", $this->namespace);
         foreach($this->getTestDirs() as $dir)
             $autoload->addDirectory($dir);
         $autoload->addDirectory($this->source->getRoot());
         $json->addAutoload($autoload);
-        return $json->toJson();
     }
 
     protected function getTestDirs()

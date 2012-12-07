@@ -2,10 +2,11 @@
 
 use Symfony\Component\Console\Command\Command,
     Symfony\Component\Console\Input\InputOption,
+    Symfony\Component\Console\Input\InputArgument,
     Symfony\Component\Console\Input\InputInterface,
     Symfony\Component\Console\Output\OutputInterface,
     Symfony\Component\Console\Formatter\OutputFormatterStyle,
-    Driven\File\Structure,
+    Driven\File\AppStructure,
     Driven\Composer\Installer;
 
 class DrivenCommand extends Command
@@ -20,7 +21,7 @@ class DrivenCommand extends Command
         $this
             ->addOption('composer', 'c', InputOption::VALUE_REQUIRED, 'The composer binary to execute. <comment>(default: composer)</comment>')
             ->addOption('help', 'h', InputOption::VALUE_NONE, 'Display this help message.')
-            ->addOption('namespace', InputArgument::REQUIRED, 'The namespace for your project');
+            ->addArgument('namespace', InputArgument::REQUIRED, 'The namespace for your project');
     }
 
     public function execute(InputInterface $input, OutputInterface $output)
@@ -29,26 +30,29 @@ class DrivenCommand extends Command
         $output->getFormatter()->setStyle('working', $style);
         $this->createStructure($input, $output);
         $this->install($input, $output);
-        $output->writeln('<info>Project created.</info>');
+        $output->write("\n<info>Project created.</info>\n");
         return 1;
     }
 
     protected function createStructure(InputInterface $input, OutputInterface $output)
     {
         $namespace = $input->getArgument('namespace');
-        $structure = new Structure($namespace);
+        $structure = new AppStructure($namespace);
         $structure->create();
         $output->writeln('<info>Directory structure created</info>');
     }
 
     protected function install(InputInterface $input, OutputInterface $output)
     {
-        $options = $this->getOptions($input);
+        $options = $input->getOptions();
         $composer = isset($options['composer']) ? $options['composer'] : 'composer';
         $installer = new Installer($composer);
-        $output->writeln('<info>Installing dependencies</info> <working>*</working>');
+        $output->writeln('<info>Installing dependencies </info>');
         $installer->run();
-        while($installer->running())
-            continue;
+        while($installer->running()) {
+            sleep(1);
+            $output->write("<info>.</info>");
+        }
+            
     }
 }

@@ -1,4 +1,6 @@
 {
+    "name": "brianium/driven",
+    "type": "library",
     "require":{
         "php":">=5.3.0",
         "phpunit\/phpunit":">=3.7.8",
@@ -9,5 +11,18 @@
         "psr-0":{
             "Driven":["src\/","test\/","it\/","functional\/"]
         }
-    }
+    },
+    "description": "Easy creation of domain driven projects for PHP",
+    "keywords":["cli", "code generation"],
+    "homepage": "https://github.com/brianium/driven",
+    "license": "APACHE-2",
+    "authors": [
+        {
+            "name":"Brian",
+            "email":"scaturrob@gmail.com",
+            "homepage":"http://brianscaturro.com",
+            "role": "Lead"
+        }
+    ],
+    "bin": ["bin/driven"]
 }
