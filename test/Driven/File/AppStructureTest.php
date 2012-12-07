@@ -1,6 +1,6 @@
 <?php namespace Driven\File;
 
-class StructureTest extends \Driven\TestBase
+class AppStructureTest extends \Driven\TestBase
 {
     protected $structure;
 
@@ -10,7 +10,7 @@ class StructureTest extends \Driven\TestBase
             system('/bin/rm -rf ' . escapeshellarg('driventest'));
         mkdir('driventest');
         chdir('driventest');
-        $this->structure = new Structure('Driven');
+        $this->structure = new AppStructure('Driven');
         $this->structure->create();
     }
 

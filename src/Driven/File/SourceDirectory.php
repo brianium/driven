@@ -1,6 +1,6 @@
 <?php namespace Driven\File;
 
-class SourceDirectory extends Directory
-{
-    
-}
+/**
+ * Really just a semantic distinction
+ */
+class SourceDirectory extends Directory {}

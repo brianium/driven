@@ -16,15 +16,11 @@ class Directory
      */
     public function addDirectory($path)
     {
-        $dir;
-        if(is_a($path, 'Directory')) {
+        if(is_a($path, 'Directory'))
             $dir = $path;
-            $this->directories[] = $dir;
-        } else {
-            $path = $this->path . DIRECTORY_SEPARATOR . $path;
-            $dir = new Directory($path);
-            $this->directories[] = $dir;
-        }
+        else
+            $dir = new Directory($this->path . DIRECTORY_SEPARATOR . $path);
+        $this->directories[] = $dir;
         return $dir;
     }
 
