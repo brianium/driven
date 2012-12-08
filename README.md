@@ -6,6 +6,7 @@ that is ready for TDD and DDD(domain driven design).
 Directory Structure
 -------------------
 Driven will create a directory structure that nicely supports a layered architecture.
+
 `
 ├── bin
 |   └── doctrine
