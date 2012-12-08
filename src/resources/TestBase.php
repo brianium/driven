@@ -2,7 +2,7 @@
 
 class TestBase extends \PHPUnit_Framework_TestCase
 {
-    protected function pathToFixture($fixture)
+    public function pathToFixture($fixture)
     {
         $fixtures = dirname(__DIR__) . DS . 'fixtures';
         $fixture = $fixtures . DS . $fixture;
@@ -12,19 +12,19 @@ class TestBase extends \PHPUnit_Framework_TestCase
         return $fixture;
     }
 
-    protected function getObjectValue($object, $property)
+    public function getObjectValue($object, $property)
     {
         $prop = $this->getAccessibleProperty($object, $property);
         return $prop->getValue($object);
     }
 
-    protected function setObjectValue($object, $property, $value)
+    public function setObjectValue($object, $property, $value)
     {
         $prop = $this->getAccessibleProperty($object, $property);
         $prop->setValue($object, $value);
     }
 
-    private function getAccessibleProperty($object, $property)
+    public function getAccessibleProperty($object, $property)
     {
         $refl = new \ReflectionObject($object);
         $prop = $refl->getProperty($property);

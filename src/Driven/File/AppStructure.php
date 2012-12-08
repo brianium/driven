@@ -30,6 +30,14 @@ class AppStructure extends StructureBase
         $this->functional->create();
         $this->createPhpUnitXml();
         file_put_contents('composer.json', $this->getComposerJson());
+        $this->createDoctrineConsole();
+    }
+
+    protected function createDoctrineConsole()
+    {
+        $bin = new Directory('bin');
+        $bin->create();
+        $bin->writeFile('doctrine', $this->getResource('doctrine', array('namespace' => $this->namespace)));
     }
 
     protected function createPhpUnitXml()

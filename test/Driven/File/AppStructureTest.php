@@ -16,6 +16,7 @@ class AppStructureTest extends \Driven\TestBase
 
     public function test_create_should_create_complete_source_directory()
     {
+        $this->assertTrue(file_exists('bin/doctrine'));
         $this->assertTrue(file_exists('composer.json'));
         $this->assertTrue(file_exists('phpunit.xml.dist'));
         $this->assertTrue(file_exists('src/Driven/Domain/Model/Repository.php'));
