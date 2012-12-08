@@ -140,4 +140,27 @@ If you have a composer.phar , you can use it with driven like so:
 
 `driven -c "php composer.phar" MyProject`
 
+Installation
+------------
+Driven can be installed via composer. Just add the following to your composer.json file:
+```js
+"require": {
+    "brianium/driven": "dev-master"
+}
+```
+Then run `php composer.phar install`
+
+You can also clone the repository directly from github.
+
+After installation it may be helpful to setup a symbolic link so you have access to driven globally.
+
+```bash
+sudo ln -s /path/to/driven/bin/driven /usr/bin/driven
+```
+Then you should be able to access driven anywhere:
+
+```bash
+driven MyNewAwesomeDomainDrivenProject
+```
+
 Example project coming soon.
