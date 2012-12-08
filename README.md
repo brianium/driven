@@ -7,7 +7,7 @@ Directory Structure
 -------------------
 Driven will create a directory structure that nicely supports a layered architecture.
 
-`
+```bash
 ├── bin
 |   └── doctrine
 ├── functional
@@ -46,7 +46,7 @@ Driven will create a directory structure that nicely supports a layered architec
 |   └── bootstrap.php
 ├── composer.json
 └── phpunit.xml.dist
-`
+```
 
 Where `Driven` would be replaced with your supplied namespace/vendor dir.
 
