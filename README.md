@@ -52,8 +52,8 @@ Where `Driven` would be replaced with your supplied namespace/vendor dir.
 
 composer.json
 -------------
-Driven comes with a composer.json file that loads the following dependencies: phpunit, phpunit/dbunit, and doctrine/orm. 
-The composer.json file will also correctly configure the composer autoloader for use with the source and test directories.
+Driven comes with a composer.json file that includes the following dependencies: phpunit, phpunit/dbunit, and doctrine/orm. 
+The composer.json file also includes autoloader configurations for all source and test directories.
 
 Testing Classes
 ---------------
