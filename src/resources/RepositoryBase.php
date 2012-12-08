@@ -45,9 +45,9 @@ abstract class RepositoryBase implements Repository
         $this->manager->persist($entity);
     }
 
-    public function delete($entity)
+    public function delete($id)
     {
-        $this->verifyType($entity);
+        $entity = $this->get($id);
         $this->manager->remove($entity);
     }
 
