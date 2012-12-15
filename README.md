@@ -17,14 +17,17 @@ Driven will create a directory structure that nicely supports a layered architec
 |       ├── Infrastructure
 |       |   └── Persistence
 |       |       └── Doctrine
-|       |           └── DoctrineTest.php
+|       |           ├── Repositories
+|       |           ├── DoctrineTest.php
+|       |           └── classes.txt
 |       ├── datasets
 |       └── DbTest.php
 ├── src
 |   └── Driven
 |       ├── Domain
 |       |   ├── Model
-|       |   |   └── Repository.php
+|       |   |   ├── Repository.php
+|       |   |   └── Entity.php
 |       |   └── Service
 |       └── Infrastructure
 |           └── Persistence
@@ -96,6 +99,14 @@ This base test case extends DbTest, and takes advantage of some Doctrine2 tools 
 
 ```php
 protected $classes = array('Driven\\Domain\\Model\\Entity\\Entity');
+```
+
+The classes.txt file exists if you prefer to manage that list of classes in a separate file. It follows a format of one class per line, with each line ending in a comma:
+
+```bash
+Class1,
+Class2,
+Class3
 ```
 
 If the corresponding mapping files exist in the `mappings` directory, the schema for the given entities will be torn down and created before each test.
