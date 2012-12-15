@@ -1,0 +1,28 @@
+<dataset>
+    <table name="samples">
+        <column>id</column>
+        <column>title</column>
+        <column>date</column>
+        <!-- Start at 101 so we dont introduce auto_increment dependencies -->
+        <row>
+            <value>101</value>
+            <value>Sample Title One</value>
+            <value>2012-12-04 07:15:23</value>
+        </row>
+        <row>
+            <value>102</value>
+            <value>Sample Title Two</value>
+            <value>2012-12-04 12:30:23</value>
+        </row>
+        <row>
+            <value>103</value>
+            <value>Sample Title Three</value>
+            <value>2012-12-04 00:00:00</value>
+        </row>
+        <row>
+            <value>104</value>
+            <value>Sample Title Four</value>
+            <value>2010-04-24 14:47:23</value>
+        </row>
+    </table>
+</dataset>

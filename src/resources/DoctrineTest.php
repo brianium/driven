@@ -14,6 +14,7 @@ abstract class DoctrineTest extends \{namespace}\DbTest
         parent::__construct($name, $data, $dataName);
         $manager = EntityManagerFactory::getNewManager();
         $this->tool = new SchemaTool($manager);
+        $this->initClasses();
         $this->classes = array_map(function($entity) use($manager) {
             return $manager->getClassMetadata($entity);
         }, $this->classes);
@@ -42,5 +43,26 @@ abstract class DoctrineTest extends \{namespace}\DbTest
     public function dropSchema()
     {
         $this->tool->dropSchema($this->classes);
+    }
+
+    /**
+     * Maintain classes outside of the test. Will look
+     * at classes.txt in this directory, and it should have
+     * the following format:
+     *
+     * My\Domain\Model\User,
+     * Other\Domain\Objects\Post,
+     * Another\Line\With\Model
+     */
+    protected function initClasses()
+    {
+        $classList = __DIR__ . DS . 'classes.txt';
+        if(file_exists($classList)) {
+            $contents = file_get_contents($classList);
+            $classes = explode(',', $contents);
+            foreach($classes as $class)
+                $this->classes[] = trim($class);
+        }
+
     }
 }

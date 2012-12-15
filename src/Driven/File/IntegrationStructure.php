@@ -22,6 +22,9 @@ class IntegrationStructure extends StructureBase
         $this->it->directories[0]
                  ->writeFile("DbTest.php", $this->getResource("DbTest.php", array('namespace' => $this->namespace)));
         $this->it->directories[0]
+                 ->directories[1]
+                 ->writeFile('samples.xml', $this->getResource('samples.xml'));
+        $this->it->directories[0]
            ->directories[0]
            ->directories[0]
            ->directories[0]
