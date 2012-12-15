@@ -75,7 +75,7 @@ Additionally you can override the default schema name by overriding the schema p
 protected $schema = ":dbtest:";
 ```
 
-By default, driven assumes PostgreSQL. This database supports the `TRUNCATES` operation for removing rows. The DbTest takes advantage of this. If you use a database that does not support this override the `$truncates` property:
+By default, driven assumes PostgreSQL. This database supports the `TRUNCATES` operation for removing rows. The DbTest takes advantage of this. If you use a database that does not support this, then override the `$truncates` property:
 
 ```php
 protected $truncates = false;
