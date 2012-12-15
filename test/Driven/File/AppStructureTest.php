@@ -39,7 +39,8 @@ class AppStructureTest extends \Driven\TestBase
         $this->assertTrue(file_exists('it/Driven/DbTest.php'));
         $this->assertTrue(file_exists('it/Driven/datasets/samples.xml'));
         $this->assertTrue(file_exists('it/Driven/Infrastructure/Persistence/Doctrine/Repositories'));  
-        $this->assertTrue(file_exists('it/Driven/Infrastructure/Persistence/Doctrine/DoctrineTest.php'));  
+        $this->assertTrue(file_exists('it/Driven/Infrastructure/Persistence/Doctrine/DoctrineTest.php'));
+        $this->assertTrue(file_exists('it/Driven/Infrastructure/Persistence/Doctrine/classes.txt'));  
         $this->assertTrue(file_exists('functional/Driven'));
     }
 

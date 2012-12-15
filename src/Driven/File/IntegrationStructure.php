@@ -28,6 +28,7 @@ class IntegrationStructure extends StructureBase
            ->directories[0]
            ->directories[0]
            ->directories[0]
+           ->writeFile('classes.txt', '')
            ->writeFile("DoctrineTest.php", $this->getResource("DoctrineTest.php", array('namespace' => $this->namespace)));
     }
 
