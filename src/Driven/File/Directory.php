@@ -37,5 +37,6 @@ class Directory
         if(!$this->created) throw new \Exception("Must create directory first.");
         $path = $this->path . DIRECTORY_SEPARATOR . $name;
         file_put_contents($path, $contents);
+        return $this;
     }
 }

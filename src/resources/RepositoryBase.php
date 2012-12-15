@@ -1,14 +1,15 @@
-<?php namespace {namespace}\Infrastructure\Persistence\Doctrine;
+<?php namespace {namespace}\Infrastructure\Persistence\Doctrine\Repositories;
 
 use {namespace}\Domain\Model\Repository,
-    {namespace}\Infrastructure\Persistence\Doctrine\EntityManagerFactory;
+    {namespace}\Infrastructure\Persistence\Doctrine\EntityManagerFactory,
+    Doctrine\ORM\EntityManager;
 
 abstract class RepositoryBase implements Repository
 {
     protected $manager;
     protected $type;
 
-    public function __construct($em = null)
+    public function __construct(EntityManager $em = null)
     {
         if(!class_exists($this->type))
             throw new \DomainException('protected property $type must specify fully qualified Entity class name');

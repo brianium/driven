@@ -11,7 +11,8 @@ class IntegrationStructure extends StructureBase
            ->addDirectory($this->namespace)
            ->addDirectory("Infrastructure")
            ->addDirectory("Persistence")
-           ->addDirectory("Doctrine");
+           ->addDirectory("Doctrine")
+           ->addDirectory('Repositories');
         $this->it->directories[0]->addDirectory("datasets");
     }
 

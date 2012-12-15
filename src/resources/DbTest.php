@@ -2,16 +2,24 @@
 
 abstract class DbTest extends \PHPUnit_Extensions_Database_TestCase
 {
-    protected $base;
-    protected $schema = ":dbtest:";
     static private $pdo = null;
-    private $conn = null;
+
+    protected $base;
+
+    //overrideable
+    protected $schema = ":dbtest:";
     protected $dsn = "pgsql:host=%s;dbname=%s;user=%s;password=%s";
+    protected $truncates = true;
+
+    //dbunit private connection
+    private $conn = null;
 
     public function __construct($name = null, $data = array(), $dataName = '')
     {
         parent::__construct($name, $data, $dataName);
         $this->base = new TestBase();
+        if(is_null($this->getDataSet()))
+            throw new \Exception("DbTest cannot have null dataset");
     }
 
     final public function getConnection()
@@ -54,11 +62,16 @@ abstract class DbTest extends \PHPUnit_Extensions_Database_TestCase
 
     protected function getConnectionParams()
     {
-        $json  = dirname(dirname(__DIR__)) . DS . 'src' . DS . 'Consumed' . DS . 'Infrastructure' . DS;
+        $json  = dirname(dirname(__DIR__)) . DS . 'src' . DS . '{namespace}' . DS . 'Infrastructure' . DS;
         $json .= 'Persistence' . DS . 'Doctrine' . DS . 'doctrine.cfg.json';
         $config = json_decode(file_get_contents($json));
         $paramsKey = (getenv('ENV') == 'development') ? 'development' : 'production';
         $config = $config->params->$paramsKey;
         return $config;
+    }
+
+    public function getSetUpOperation()
+    {
+        return \PHPUnit_Extensions_Database_Operation_Factory::CLEAN_INSERT($this->truncates);
     }
 }
