@@ -5,6 +5,9 @@ if(!defined('DS'))
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
-require_once dirname(__DIR__) . DS . 'vendor' . DS . 'autoload.php';
+$vendor = dirname(__DIR__) . DS . 'vendor';
+define('VENDOR', $vendor);
+
+require_once $vendor . DS . 'autoload.php';
 
 define('BOOTSTRAP', __FILE__);
