@@ -75,6 +75,12 @@ Additionally you can override the default schema name by overriding the schema p
 protected $schema = ":dbtest:";
 ```
 
+By default, driven assumes PostgreSQL. This database supports the `TRUNCATES` operation for removing rows. The DbTest takes advantage of this. If you use a database that does not support this override the `$truncates` property:
+
+```php
+protected $truncates = false;
+```
+
 In addition, there is a helper that can be called to load a dataset from xml into the database using the PHPUnit provided method `getDataSet`. It will look for these datasets in the datasets directory contained in the integration test suite: `it`
 
 ```php
