@@ -186,4 +186,4 @@ Then you should be able to access driven anywhere:
 driven MyNewAwesomeDomainDrivenProject
 ```
 
-Example project coming soon.
+See a project built on driven come alive [here](https://github.com/brianium/consumed).
