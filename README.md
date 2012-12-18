@@ -32,11 +32,12 @@ Driven will create a directory structure that nicely supports a layered architec
 |       └── Infrastructure
 |           └── Persistence
 |               └── Doctrine
+|                   ├── Repositories
+|                   |   └── RepositoryBase.php
 |                   ├── mappings
 |                   ├── proxies
 |                   ├── ConfigurationFactory.php
 |                   ├── EntityManagerFactory.php
-|                   ├── RepositoryBase.php
 |                   ├── UnitOfWork.php
 |                   └── doctrine.cfg.json
 ├── test
