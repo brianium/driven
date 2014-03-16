@@ -165,6 +165,8 @@ If you have a composer.phar , you can use it with driven like so:
 
 Installation
 ------------
+
+###Composer###
 Driven can be installed via composer. Just add the following to your composer.json file:
 ```js
 "require": {
@@ -180,10 +182,15 @@ After installation it may be helpful to setup a symbolic link so you have access
 ```bash
 sudo ln -s /path/to/driven/bin/driven /usr/bin/driven
 ```
-Then you should be able to access driven anywhere:
 
-```bash
-driven MyNewAwesomeDomainDrivenProject
-```
+###Build a phar###
+A phar can be created by running `php package.php` from the project root. This will create `build/driven.phar`.
 
-See a project built on driven come alive [here](https://github.com/brianium/consumed).
+If you receive an error that looks like:
+
+    creating archive "build/doctrine-migrations.phar" disabled by INI setting
+
+This can be fixed by setting the following in your php.ini:
+
+    ; http://php.net/phar.readonly
+    phar.readonly = Off
