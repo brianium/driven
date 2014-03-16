@@ -27,6 +27,12 @@ abstract class StructureBase
         return $contents;
     }
 
+    protected function getConfig($file) {
+        $configRoot = dirname(dirname(dirname(__DIR__))) . DS . 'config';
+        $path = $configRoot . DS . $file;
+        return include $path;
+    }
+
     abstract public function init();
     abstract public function build();
 

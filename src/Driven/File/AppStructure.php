@@ -13,6 +13,7 @@ class AppStructure extends StructureBase
     protected $it;
     protected $functional;
     protected $json;
+    protected $composer;
 
     public function init()
     {
@@ -20,6 +21,7 @@ class AppStructure extends StructureBase
         $this->unit = new TestStructure($this->namespace);
         $this->it = new IntegrationStructure($this->namespace);
         $this->functional = new FunctionalStructure($this->namespace);
+        $this->composer = $this->getConfig('composer.php');
     }
 
     public function build()
@@ -58,10 +60,9 @@ class AppStructure extends StructureBase
 
     protected function setJsonRequirements(Json $json)
     {
-        $json->addRequirement(new Requirement("php", ">=5.3.0"));
-        $json->addRequirement(new Requirement("phpunit/phpunit", ">=3.7.8"));
-        $json->addRequirement(new Requirement("doctrine/orm", "2.3.0"));
-        $json->addRequirement(new Requirement("phpunit/dbunit", ">=1.2.1"));
+        $requirements = $this->composer['require'];
+        foreach ($requirements as $package => $version)
+            $json->addRequirement(new Requirement($package, $version));
     }
 
     protected function setJsonAutoloads(Json $json)
