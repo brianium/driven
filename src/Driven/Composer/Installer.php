@@ -1,30 +1,19 @@
 <?php namespace Driven\Composer;
 
-class Installer
+use Driven\Process;
+
+class Installer extends Process
 {
-    protected static $descriptorspec = array(
-       0 => array("pipe", "r"),
-       1 => array("pipe", "w"),
-       2 => array("pipe", "w")
-    );
-
-    protected $binary;
-    protected $proc;
-
     public function __construct($bin = 'composer')
     {
-        $this->binary = $bin;
+        parent::__construct($bin);
     }
 
-    public function run()
+    /**
+     * @return string
+     */
+    public function getCommand()
     {
-        $cmd = sprintf("%s install", $this->binary);
-        $this->proc = proc_open($cmd, static::$descriptorspec, $pipes);
-    }
-
-    public function running()
-    {
-        $status = proc_get_status($this->proc);
-        return $status['running'];
+        return sprintf("%s install", $this->binary);
     }
 }
