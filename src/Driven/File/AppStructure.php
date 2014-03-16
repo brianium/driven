@@ -55,14 +55,19 @@ class AppStructure extends StructureBase
         $json = new Json(new JsonPrettyPrinter());
         $this->setJsonRequirements($json);
         $this->setJsonAutoloads($json);
+        if (array_key_exists('minimum-stability', $this->composer))
+            $json->setMinimumStability($this->composer['minimum-stability']);
         return $json->toJson();
     }
 
     protected function setJsonRequirements(Json $json)
     {
-        $requirements = $this->composer['require'];
+        $requirements = array_key_exists('require', $this->composer) ? $this->composer['require'] : array();
+        $dev = array_key_exists('require-dev', $this->composer) ? $this->composer['require-dev'] : array();
         foreach ($requirements as $package => $version)
             $json->addRequirement(new Requirement($package, $version));
+        foreach ($dev as $package => $version)
+            $json->addRequirement(new Requirement($package, $version, true));
     }
 
     protected function setJsonAutoloads(Json $json)
