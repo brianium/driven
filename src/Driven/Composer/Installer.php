@@ -4,9 +4,13 @@ use Driven\Process;
 
 class Installer extends Process
 {
-    public function __construct($bin = 'composer')
+    protected $location;
+    protected $startDir;
+
+    public function __construct($location, $bin = 'composer')
     {
         parent::__construct($bin);
+        $this->location = $location;
     }
 
     /**
@@ -14,6 +18,13 @@ class Installer extends Process
      */
     public function getCommand()
     {
+        $this->startDir = getcwd();
+        chdir($this->location);
         return sprintf("%s install", $this->binary);
+    }
+
+    public function returnToStartingDirectory()
+    {
+        chdir($this->startDir);
     }
 }

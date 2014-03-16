@@ -1,5 +1,6 @@
 <?php namespace Driven\Console\Commands;
 
+use Driven\Doctrine\MigrationInstaller;
 use Symfony\Component\Console\Command\Command,
     Symfony\Component\Console\Input\InputOption,
     Symfony\Component\Console\Input\InputArgument,
@@ -8,6 +9,9 @@ use Symfony\Component\Console\Command\Command,
     Symfony\Component\Console\Formatter\OutputFormatterStyle,
     Driven\File\AppStructure,
     Driven\Composer\Installer;
+
+if(!defined('DS'))
+    define('DS', DIRECTORY_SEPARATOR);
 
 class DrivenCommand extends Command
 {
@@ -30,7 +34,7 @@ class DrivenCommand extends Command
         $output->getFormatter()->setStyle('working', $style);
         $this->createStructure($input, $output);
         $this->install($input, $output);
-        $output->write("\n<info>Project created.</info>\n");
+        $output->writeln("<info>Project created.</info>");
         return 1;
     }
 
@@ -46,13 +50,46 @@ class DrivenCommand extends Command
     {
         $options = $input->getOptions();
         $composer = isset($options['composer']) ? $options['composer'] : 'composer';
-        $installer = new Installer($composer);
+        $this->installDependencies(getcwd(), $output, $composer);
+        $this->installMigrations($output, $composer);
+    }
+
+    /**
+     * @param $path
+     * @param OutputInterface $output
+     * @param $composer
+     */
+    protected function installDependencies($path, OutputInterface $output, $composer)
+    {
+        $installer = new Installer($path, $composer);
         $output->writeln('<info>Installing dependencies </info>');
         $installer->run();
-        while($installer->running()) {
+        while ($installer->running()) {
             sleep(1);
             $output->write("<info>.</info>");
         }
-            
+        $installer->returnToStartingDirectory();
+        $output->writeln("\nDependencies installed");
+    }
+
+    /**
+     * @param OutputInterface $output
+     * @param $composer
+     */
+    protected function installMigrations(OutputInterface $output, $composer)
+    {
+        $path = getcwd() . DS . 'vendor' . DS . 'doctrine' . DS . 'migrations';
+        $installer = new MigrationInstaller($path . DS . 'package.php');
+        $output->writeln('<info>Installing migration runner</info>');
+        $this->installDependencies($path, $output, $composer);
+        $installer->run();
+        while ($installer->running()) {
+            sleep(1);
+            $output->write("<info>.</info>");
+        }
+        $output->writeln("\n<info>Copying migration runner to bin</info>");
+        $build = $path . DS . 'build' . DS . 'doctrine-migrations.phar';
+        rename($build, getcwd() . DS . 'bin' . DS . 'doctrine-migrations.phar');
+        $output->writeln("Migration runner copied");
     }
 }
