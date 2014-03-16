@@ -55,6 +55,8 @@ class DrivenCommand extends Command
     }
 
     /**
+     * Installs composer dependencies for a given path
+     *
      * @param $path
      * @param OutputInterface $output
      * @param $composer
@@ -73,6 +75,9 @@ class DrivenCommand extends Command
     }
 
     /**
+     * Installs the doctrine migration runner by running php package.php to build
+     * an executable phar and then copies it to the project's bin directory
+     *
      * @param OutputInterface $output
      * @param $composer
      */
