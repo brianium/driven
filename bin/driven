@@ -25,6 +25,9 @@ if (!$found) {
     );
 }
 
+$path = dirname(__DIR__) . '/config';
+set_include_path(get_include_path() . PATH_SEPARATOR . $path);
+
 use Driven\Console\DrivenApplication;
 
 $app = new DrivenApplication();

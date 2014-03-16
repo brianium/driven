@@ -21,7 +21,7 @@ class AppStructure extends StructureBase
         $this->unit = new TestStructure($this->namespace);
         $this->it = new IntegrationStructure($this->namespace);
         $this->functional = new FunctionalStructure($this->namespace);
-        $this->composer = $this->getConfig('composer.php');
+        $this->composer = include 'composer.php';
     }
 
     public function build()
