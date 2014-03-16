@@ -188,7 +188,7 @@ A phar can be created by running `php package.php` from the project root. This w
 
 If you receive an error that looks like:
 
-    creating archive "build/doctrine-migrations.phar" disabled by INI setting
+    creating archive "build/driven.phar" disabled by INI setting
 
 This can be fixed by setting the following in your php.ini:
 
